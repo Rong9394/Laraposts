@@ -61,7 +61,7 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit(Post $post, Request $request)
     {
         if($post->user->id == $request->user()->id) {
             $url = route('edit_post', ['post'=>$post->id]);
