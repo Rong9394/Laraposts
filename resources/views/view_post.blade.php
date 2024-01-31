@@ -48,8 +48,10 @@
                         @auth
                             @if($post->user_id == Auth::user()->id)
                                 <button onclick="window.location='{{route('edit_post', ['post'=>$post->id])}}'" type="button">Edit</button>
-                                <button onclick="window.location='{{route('delete_post', ['post'=>$post->id])}}'" type="button" style="margin-left:20px">Delete</button>
-                                @csrf 
+                                <form style="display:inline-block; margin-left:20px" action="{{route('delete_post', ['post'=>$post->id])}}" method="GET">
+                                    @csrf
+                                    <button type="submit">Delete</button> 
+                                </form>
                             @endif
                         @endauth
                         <button type="button" style="margin-left:20px" onclick="window.location='{{route('posts')}}'">Return</button>

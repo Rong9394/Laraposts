@@ -63,9 +63,14 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        $url = route('edit_post', ['post'=>$post->id]);
-        $url = basename(dirname($url));
-        return view($url, ['post'=>$post]);
+        if($post->user->id == $request->user()->id) {
+            $url = route('edit_post', ['post'=>$post->id]);
+            $url = basename(dirname($url));
+            return view($url, ['post'=>$post]);
+        } else {
+            $url = route('posts');
+            return redirect(basename($url));
+        }
     }
 
     /**
